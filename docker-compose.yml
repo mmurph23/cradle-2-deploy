@@ -1,0 +1,26 @@
+version: "2.1"
+services:
+  server:
+    container_name: express
+    build:
+      context: ./express-app
+      dockerfile: Dockerfile
+    command: "npm run start:dev"
+    ports:
+      - "8080:8080"
+
+  client:
+    container_name: react
+    build:
+      context: ./react-frontend
+      dockerfile: Dockerfile
+    command: "npm run start"
+    volumes:
+      - ./react-frontend/src:/usr/src/app/client/src
+      - ./react-frontend/public:/usr/src/app/client/public
+    ports:
+      - "3000:3000"
+    links:
+      - server
+    depends_on:
+      - server
