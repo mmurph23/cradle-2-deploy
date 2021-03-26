@@ -16,8 +16,8 @@ services:
       dockerfile: Dockerfile
     command: "npm run start"
     volumes:
-      - ./react-frontend/src:/usr/src/app/client/src
-      - ./react-frontend/public:/usr/src/app/client/public
+      - ./react-frontend/src:/usr/src/app/src
+      - ./react-frontend/public:/usr/src/app/public
     ports:
       - "3000:3000"
     links:
