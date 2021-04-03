@@ -1,4 +1,4 @@
-version: "2.1"
+version: "3.9"
 services:
   server:
     container_name: express
@@ -16,11 +16,18 @@ services:
       dockerfile: Dockerfile
     command: "npm run start"
     volumes:
-      - ./react-frontend/src:/usr/src/app/client/src
-      - ./react-frontend/public:/usr/src/app/client/public
+      - ./react-frontend/src:/usr/src/app/src
+      - ./react-frontend/public:/usr/src/app/public
     ports:
       - "3000:3000"
-    links:
-      - server
     depends_on:
       - server
+      
+  postgres:
+    image: postgres:13.2
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db

@@ -1,0 +1,4 @@
+{
+    "image": "node:14.6.0",
+    "forwardPorts": [3000]
+  }
